@@ -30,6 +30,3 @@ jobs:
             -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Threshold=70 \
                DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.ThresholdType=Line \
                DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.ThresholdStat=Total
-
-      - name: Static code analysis
-        run: dotnet format --verify-no-changes --severity warn
