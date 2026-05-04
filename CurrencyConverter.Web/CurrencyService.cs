@@ -22,14 +22,17 @@ namespace CurrencyConverter.Web
             double toRate = toCurrency == "EUR" ? 1 : rates[toCurrency];
 
             double eurAmount = amount / fromRate;
+            
             return eurAmount * toRate;
         }
 
         public List<string> GetSupportedCurrencies()
         {
             var rates = LoadRates();
-
-            return rates.Keys.ToList();
+            var supportedCurrencies = rates.Keys.ToList();
+            supportedCurrencies.Add("EUR");
+            supportedCurrencies.Sort();
+            return supportedCurrencies;
         }
 
         private Dictionary<string, double> LoadRates()
