@@ -13,8 +13,8 @@ namespace CurrencyConverter.Web
         {
             _ecbUrl = Environment.GetEnvironmentVariable("ECB_URL")
                 ?? throw new InvalidOperationException("ECB_URL is not set");
-            _validKey = Environment.GetEnvironmentVariable("VALID_KEY")
-                ?? throw new InvalidOperationException("VALID_KEY is not set");
+            _validKey = Environment.GetEnvironmentVariable("API_KEY")
+                ?? throw new InvalidOperationException("API_KEY is not set");
         }
 
         public double Convert(string fromCurrency, string toCurrency, double amount, string apiKey)

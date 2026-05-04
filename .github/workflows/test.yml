@@ -20,7 +20,7 @@ jobs:
       - name: Create .env file
         run: |
           echo "ECB_URL=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml" >> CurrencyConverter.Web/.env
-          echo "VALID_KEY=secret123" >> CurrencyConverter.Web/.env
+          echo "API_KEY=secret123" >> CurrencyConverter.Web/.env
 
       - name: Restore dependencies
         run: dotnet restore
