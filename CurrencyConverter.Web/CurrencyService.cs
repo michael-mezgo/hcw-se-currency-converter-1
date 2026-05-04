@@ -6,12 +6,20 @@ namespace CurrencyConverter.Web
 
     public class CurrencyService : ICurrencyService
     {
-        private const string ECB_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
-        private const string VALID_KEY = "secret123";
+        private readonly string _ecbUrl;
+        private readonly string _validKey;
+
+        public CurrencyService()
+        {
+            _ecbUrl = Environment.GetEnvironmentVariable("ECB_URL")
+                ?? throw new InvalidOperationException("ECB_URL is not set");
+            _validKey = Environment.GetEnvironmentVariable("VALID_KEY")
+                ?? throw new InvalidOperationException("VALID_KEY is not set");
+        }
 
         public double Convert(string fromCurrency, string toCurrency, double amount, string apiKey)
         {
-            if (apiKey != VALID_KEY)
+            if (apiKey != _validKey)
             {
                 throw new Exception("Authentication failed");
             }
@@ -37,7 +45,7 @@ namespace CurrencyConverter.Web
 
         private Dictionary<string, double> LoadRates()
         {
-            var xml = XDocument.Load(ECB_URL);
+            var xml = XDocument.Load(_ecbUrl);
 
             var rates = xml.Descendants()
                 .Where(x => x.Name.LocalName == "Cube" && x.Attribute("currency") != null)

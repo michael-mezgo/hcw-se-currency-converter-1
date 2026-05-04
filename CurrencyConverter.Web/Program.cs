@@ -2,6 +2,9 @@ using CoreWCF;
 using CoreWCF.Configuration;
 using CoreWCF.Description;
 using CurrencyConverter.Web;
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
